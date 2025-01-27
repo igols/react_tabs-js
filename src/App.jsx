@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -10,12 +11,14 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [select, setSelect] = useState('');
-  const [selectNumb, setSelectNumb] = useState('');
+  const [select, setSelect] = useState(tabs[0].content);
+  const [selectNumb, setSelectNumb] = useState(tabs[0].title);
+  const [selectId, setSelectId] = useState(tabs[0].id);
 
   const handleClick = item => {
     setSelect(item.content);
     setSelectNumb(item.title);
+    setSelectId(item.id);
   };
 
   return (
@@ -24,19 +27,7 @@ export const App = () => {
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
-          <ul>
-            {tabs.map(item => (
-              <li className="is-active" data-cy="Tab" key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  data-cy="TabLink"
-                  onClick={() => handleClick(item)}
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <Tabs tabs={tabs} handleClick={handleClick} selectId={selectId} />
         </div>
 
         <div className="block" data-cy="TabContent">

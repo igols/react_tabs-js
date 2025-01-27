@@ -13,12 +13,12 @@ export const tabs = [
 export const App = () => {
   const [select, setSelect] = useState(tabs[0].content);
   const [selectNumb, setSelectNumb] = useState(tabs[0].title);
-  const [selectId, setSelectId] = useState(tabs[0].id);
+  const [activeTabId, setactiveTabId] = useState(tabs[0].id);
 
   const handleClick = item => {
     setSelect(item.content);
     setSelectNumb(item.title);
-    setSelectId(item.id);
+    setactiveTabId(item.id);
   };
 
   return (
@@ -27,7 +27,11 @@ export const App = () => {
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
-          <Tabs tabs={tabs} handleClick={handleClick} selectId={selectId} />
+          <Tabs
+            tabs={tabs}
+            handleClick={handleClick}
+            activeTabId={activeTabId}
+          />
         </div>
 
         <div className="block" data-cy="TabContent">

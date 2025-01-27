@@ -1,10 +1,10 @@
-export const Tabs = ({ tabs, handleClick, selectId }) => (
+export const Tabs = ({ tabs, handleClick, activeTabId }) => (
   <ul>
     {tabs.map(item => (
       <li
         data-cy="Tab"
         key={item.id}
-        className={item.id === selectId ? 'is-active' : ''}
+        className={item.id === activeTabId ? 'is-active' : ''}
       >
         <a
           href={`#${item.id}`}

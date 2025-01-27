@@ -11,33 +11,17 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [select, setSelect] = useState(tabs[0].content);
-  const [selectNumb, setSelectNumb] = useState(tabs[0].title);
   const [activeTabId, setactiveTabId] = useState(tabs[0].id);
 
-  const handleClick = item => {
-    setSelect(item.content);
-    setSelectNumb(item.title);
-    setactiveTabId(item.id);
+  const handleClick = tabId => {
+    setactiveTabId(tabId);
   };
 
   return (
     <div className="section">
-      <h1 className="title">{`Selected tab is ${selectNumb}`}</h1>
+      <h1 className="title">{`Selected tab is ${tabs.find(tab => tab.id === activeTabId).title}`}</h1>
 
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <Tabs
-            tabs={tabs}
-            handleClick={handleClick}
-            activeTabId={activeTabId}
-          />
-        </div>
-
-        <div className="block" data-cy="TabContent">
-          {select}
-        </div>
-      </div>
+      <Tabs tabs={tabs} activeTabId={activeTabId} onTabSelected={handleClick} />
     </div>
   );
 };

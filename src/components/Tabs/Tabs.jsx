@@ -11,7 +11,9 @@ export const Tabs = ({ tabs, handleClick, activeTabId }) => (
           data-cy="TabLink"
           onClick={e => {
             e.preventDefault();
-            handleClick(item);
+            if (item.id !== activeTabId) {
+              handleClick(item);
+            }
           }}
         >
           {item.title}
